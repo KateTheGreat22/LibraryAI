@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>BYUI Library ISBN Lookup</title>
+
+  <style>
+
+    body {
+
+      font-family: Arial, sans-serif;
+
+      padding: 2rem;
+
+    }
+
+    .lookup-container {
+
+      display: flex;
+
+      gap: 0.5rem;
+
+      align-items: center;
+
+      flex-wrap: wrap;
+
+    }
+
+    input[type="text"] {
+
+      padding: 0.5rem 0.75rem;
+
+      font-size: 1rem;
+
+      border: 1px solid #ccc;
+
+      border-radius: 4px;
+
+      width: 220px;
+
+    }
+
+    button {
+
+      padding: 0.5rem 1.25rem;
+
+      font-size: 1rem;
+
+      background-color: #003087;
+
+      color: white;
+
+      border: none;
+
+      border-radius: 4px;
+
+      cursor: pointer;
+
+    }
+
+    button:hover {
+
+      background-color: #00205b;
+
+    }
+
+    #error-msg {
+
+      color: red;
+
+      font-size: 0.9rem;
+
+      margin-top: 0.5rem;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+ 
+
+  <h2>BYUI Library ISBN Search</h2>
+
+ 
+
+  <div class="lookup-container">
+
+    <input type="text" id="isbnInput" placeholder="e.g. 978-0590407434" />
+
+    <button onclick="searchISBN()">Search Library Catalog</button>
+
+  </div>
+
+  <div id="error-msg"></div>
+
+ 
+
+  <script>
+
+    function searchISBN() {
+
+      const isbn = document.getElementById('isbnInput').value.trim();
+
+      const errorMsg = document.getElementById('error-msg');
+
+      errorMsg.textContent = '';
+
+ 
+
+      if (!isbn) {
+
+        errorMsg.textContent = 'Please enter an ISBN.';
+
+        return;
+
+      }
+
+ 
+
+      // Basic ISBN format validation (10 or 13 digits, optional hyphens)
+
+      const isbnClean = isbn.replace(/-/g, '');
+
+      if (!/^\d{10}(\d{3})?$/.test(isbnClean)) {
+
+        errorMsg.textContent = 'Please enter a valid ISBN-10 or ISBN-13.';
+
+        return;
+
+      }
+
+ 
+
+      const baseURL = 'https://byui.ent.sirsi.net/client/en_US/main/search/results';
+
+      const params = new URLSearchParams({
+
+        qu: isbn,
+
+        te: 'ILS',
+
+        rt: 'false|||ISBN|||ISBN'
+
+      });
+
+ 
+
+      const fullURL = `${baseURL}?${params.toString()}`;
+
+      window.open(fullURL, '_blank');
+
+    }
+
+ 
+
+    // Allow pressing Enter to trigger search
+
+    document.getElementById('isbnInput').addEventListener('keydown', function(e) {
+
+      if (e.key === 'Enter') searchISBN();
+
+    });
+
+  </script>
+
+ 
+
+</body>
+
+</html>
+
+ 
+
+ 
