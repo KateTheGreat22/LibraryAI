@@ -14,7 +14,7 @@ to see if the book is currently available.
 
 # Development Environment
 
-I used Python for the majority of the code. This project is written in Python and combines several libraries to create an 
+I used Python for the code, and it combines several libraries to create an 
 AI-powered semantic book search application. The graphical user interface is built with Python's built-in Tkinter library 
 (including ttk and messagebox) to provide a desktop application where users can search for books using plot descriptions or themes. 
 The project uses ChromaDB as a persistent vector database and its default embedding function to convert book descriptions and user 
