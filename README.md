@@ -38,6 +38,3 @@ intuitive AI-driven interface for discovering books through semantic search.
 - Add a full break down of the code in a seperate file so it is easier to read
 - Fix the BYUI logo in the Tkinter bot
 
-- Item 1
-- Item 2
-- Item 3
